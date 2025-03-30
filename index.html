@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Navigation Hub</title>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --hover-color: #2563eb;
+            --text-color: #333;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --header-bg: linear-gradient(135deg, #1e40af, #3b82f6);
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --section-bg: #f1f5f9;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--header-bg);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0 30px;
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-button:hover {
+            background-color: var(--hover-color);
+        }
+
+        .categories-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .category {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--section-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .link-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 15px;
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .link-card a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .link-card a:hover {
+            color: var(--primary-color);
+        }
+
+        .link-card .icon {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .link-card .description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            background-color: var(--section-bg);
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .link-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .categories-wrapper {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>My Personal Navigation Hub</h1>
+            <p>A curated collection of useful tools and resources</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search for tools, websites, resources..." id="searchInput">
+                <button class="search-button" onclick="searchLinks()">Search</button>
+            </div>
+        </div>
+
+        <div class="categories-wrapper">
+            <!-- General Tools Section -->
+            <div class="category">
+                <h2 class="category-title">General Tools</h2>
+                <div class="link-grid">
+                    <div class="link-card">
+                        <a href="https://www.tool22.com/" target="_blank">
+                            <img src="https://www.tool22.com/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Rabbit Tools
+                        </a>
+                        <p class="description">Free mobile tools, webmaster tools, source code viewer</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://www.toolnb.com/" target="_blank">
+                            <img src="https://www.toolnb.com/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Love Data Tools
+                        </a>
+                        <p class="description">Useful online toolbox</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://tools.miku.ac/" target="_blank">
+                            <img src="https://tools.miku.ac/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            MikuTools
+                        </a>
+                        <p class="description">A lightweight collection of tools</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://www.67tool.com/" target="_blank">
+                            <img src="https://www.67tool.com/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Instant Tools
+                        </a>
+                        <p class="description">Dedicated to creating instant-use online toolbox</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://www.iamwawa.cn/" target="_blank">
+                            <img src="https://www.iamwawa.cn/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Wawa Tools
+                        </a>
+                        <p class="description">Convenient online tool website</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Tools Section -->
+            <div class="category">
+                <h2 class="category-title">Professional Tools</h2>
+                <div class="link-grid">
+                    <div class="link-card">
+                        <a href="https://chuangzaoshi.com/" target="_blank">
+                            <img src="https://chuangzaoshi.com/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Creative Lion
+                        </a>
+                        <p class="description">Navigation for creative workers</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://touduyu.com/" target="_blank">
+                            <img src="https://touduyu.com/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Sneak Fish
+                        </a>
+                        <p class="description">Best navigation website & directory</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://maliquankai.com/" target="_blank">
+                            <img src="https://maliquankai.com/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Code Power
+                        </a>
+                        <p class="description">Full-time independent developer's product diary and design sharing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="categories-wrapper">
+            <!-- Office Efficiency Tools Section -->
+            <div class="category">
+                <h2 class="category-title">Office Efficiency</h2>
+                <div class="link-grid">
+                    <div class="link-card">
+                        <a href="https://www.bangongziyuan.com/" target="_blank">
+                            <img src="https://www.bangongziyuan.com/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Office Resource Network
+                        </a>
+                        <p class="description">Premium PPT templates download site with various office resources</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://www.limestart.cn/" target="_blank">
+                            <img src="https://www.limestart.cn/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Lime Start Page
+                        </a>
+                        <p class="description">Efficient start page with carefully selected resources</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://adzhp.cc/" target="_blank">
+                            <img src="https://adzhp.cc/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Love Groceries
+                        </a>
+                        <p class="description">Collecting useful things | Love Navigation</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Tools Section -->
+            <div class="category">
+                <h2 class="category-title">AI Tools</h2>
+                <div class="link-grid">
+                    <div class="link-card">
+                        <a href="https://ai-bot.cn/" target="_blank">
+                            <img src="https://ai-bot.cn/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            AI Tool Set
+                        </a>
+                        <p class="description">1000+ AI tools collection, domestic and foreign AI tool navigation</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://www.aihub.cn/" target="_blank">
+                            <img src="https://www.aihub.cn/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            AIHub
+                        </a>
+                        <p class="description">AI Navigation - Latest and hottest AI tool discovery platform</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://www.futuretools.io/" target="_blank">
+                            <img src="https://www.futuretools.io/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Future Tools
+                        </a>
+                        <p class="description">Find the exact AI tool for your needs</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://www.wujieai.com/" target="_blank">
+                            <img src="https://www.wujieai.com/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Boundless AI
+                        </a>
+                        <p class="description">Everyone is an artist</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="categories-wrapper">
+            <!-- Content Creation Tools Section -->
+            <div class="category">
+                <h2 class="category-title">Content Creation</h2>
+                <div class="link-grid">
+                    <div class="link-card">
+                        <a href="https://ai.gptprompts.com.cn/zh" target="_blank">
+                            <img src="https://ai.gptprompts.com.cn/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            ChatGPT Prompt Generator
+                        </a>
+                        <p class="description">Create effective prompts for AI tools</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://www.yizhuan5.com/work.html#1-4" target="_blank">
+                            <img src="https://www.yizhuan5.com/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Yi Zhuan Media Tools
+                        </a>
+                        <p class="description">Make content creation more efficient</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://work.tiangong.cn/write/edit/cCNRZ2qEf" target="_blank">
+                            <img src="https://work.tiangong.cn/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            AI Creation
+                        </a>
+                        <p class="description">AI-powered content creation tool</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://www.remove.bg/zh" target="_blank">
+                            <img src="https://www.remove.bg/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Remove.bg
+                        </a>
+                        <p class="description">Online image background removal tool</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://www.x-design.com/" target="_blank">
+                            <img src="https://www.x-design.com/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Beauty Design Studio
+                        </a>
+                        <p class="description">AI-generated posters - one-click design - free template resources</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Checking Tools Section -->
+            <div class="category">
+                <h2 class="category-title">Content Checking Tools</h2>
+                <div class="link-grid">
+                    <div class="link-card">
+                        <a href="http://ci.lingke.pro/" target="_blank">
+                            <img src="http://ci.lingke.pro/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Zero Gram Word Check
+                        </a>
+                        <p class="description">Professional Xiaohongshu, Douyin, Bilibili sensitive word detection tool</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="http://www.ju1.cn/" target="_blank">
+                            <img src="http://www.ju1.cn/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Sentence Easy
+                        </a>
+                        <p class="description">Latest advertising law, Taobao, Douyin prohibited words sensitive word online check tool</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="http://life.chacuo.net/convertsimilar" target="_blank">
+                            <img src="http://life.chacuo.net/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Similarity Calculator
+                        </a>
+                        <p class="description">Online document similarity calculation, article and webpage similarity!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="categories-wrapper">
+            <!-- Social Media & Community Tools Section -->
+            <div class="category">
+                <h2 class="category-title">Social Media & Community</h2>
+                <div class="link-grid">
+                    <div class="link-card">
+                        <a href="https://mp.weixin.qq.com/cgi-bin/home" target="_blank">
+                            <img src="https://mp.weixin.qq.com/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            WeChat Official Account
+                        </a>
+                        <p class="description">WeChat official account management platform</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://scys.vip/#/article/13eoltdq9c03" target="_blank">
+                            <img src="https://scys.vip/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Xiaohongshu Guide
+                        </a>
+                        <p class="description">Pixel-level guide to efficiently imitate popular notes</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://www.cimidata.com/search/account" target="_blank">
+                            <img src="https://www.cimidata.com/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Official Account Search
+                        </a>
+                        <p class="description">Cimi Data - Search for WeChat official accounts</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://www.p2ps.vip/#/home" target="_blank">
+                            <img src="https://www.p2ps.vip/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Sales Information
+                        </a>
+                        <p class="description">Marketing and sales information platform</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Learning & Information Section -->
+            <div class="category">
+                <h2 class="category-title">Learning & Information</h2>
+                <div class="link-grid">
+                    <div class="link-card">
+                        <a href="https://college.yingdao.com/" target="_blank">
+                            <img src="https://college.yingdao.com/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Shadow Blade Academy
+                        </a>
+                        <p class="description">Learning platform for automation and efficiency</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://tophub.today/c/news" target="_blank">
+                            <img src="https://tophub.today/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Today's Hot Topics
+                        </a>
+                        <p class="description">Daily hot news and trending topics</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://www.bilibili.com/video/BV1yw411F7J1/" target="_blank">
+                            <img src="https://www.bilibili.com/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            Super Search Techniques
+                        </a>
+                        <p class="description">The only external plugin for ordinary people to become stronger</p>
+                    </div>
+                    <div class="link-card">
+                        <a href="https://www.100font.com/" target="_blank">
+                            <img src="https://www.100font.com/favicon.ico" class="icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg>'">
+                            100font.com
+                        </a>
+                        <p class="description">Free commercial font collection - Free font download website</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 My Personal Navigation Hub | Created for efficient resource access</p>
+    </footer>
+
+    <script>
+        function searchLinks() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const linkCards = document.querySelectorAll('.link-card');
+            
+            linkCards.forEach(card => {
+                const linkText = card.querySelector('a').textContent.toLowerCase();
+                const description = card.querySelector('.description')?.textContent.toLowerCase() || '';
+                
+                if (linkText.includes(searchInput) || description.includes(searchInput)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Check if any cards are visible in each category
+            const categories = document.querySelectorAll('.category');
+            categories.forEach(category => {
+                const visibleCards = category.querySelectorAll('.link-card[style="display: block"]').length;
+                const allCards = category.querySelectorAll('.link-card[style="display: none"]').length;
+                
+                if (visibleCards === 0 && allCards > 0) {
+                    category.style.display = 'none';
+                } else {
+                    category.style.display = 'block';
+                }
+            });
+        }
+
+        // Add event listener for enter key in search box
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchLinks();
+            }
+        });
+    </script>
+</body>
+</html>
